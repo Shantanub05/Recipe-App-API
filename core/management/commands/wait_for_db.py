@@ -5,7 +5,6 @@ from django.db.utils import OperationalError
 
 
 class Command(BaseCommand):
-
     def handle(self, *args, **options):
         self.stdout.write('Waiting for databases...')
         db_up = False
@@ -16,5 +15,4 @@ class Command(BaseCommand):
             except (Psycopg2Error, OperationalError):
                 self.stdout.write('Database unavailable, waiting for 1 sec...')
                 time.sleep(1)
-
         self.stdout.write(self.style.SUCCESS('Database available'))
